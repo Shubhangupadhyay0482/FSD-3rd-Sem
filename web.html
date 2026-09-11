@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Books Table</title>
+<style>
+  body {
+    font-family: Arial, sans-serif;
+    text-align: center;
+    background-color: #cfe0d8;
+    padding: 30px;
+  }
+
+  h1 {
+    margin-bottom: 20px;
+  }
+
+  table {
+    border-collapse: collapse;
+    margin: 0 auto;
+    background-color: #cfe0d8;
+  }
+
+  th, td {
+    border: 1px solid #000;
+    padding: 10px 20px;
+  }
+
+  th {
+    background-color: #b9cdd0;
+  }
+
+  input[type="text"] {
+    width: 100px;
+    padding: 4px;
+  }
+
+  .btn-container {
+    margin-top: 20px;
+  }
+
+  button {
+    background-color: #14331f;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    margin: 0 5px;
+    cursor: pointer;
+    font-size: 15px;
+  }
+
+  button:hover {
+    background-color: #1f4a2f;
+  }
+
+  #bill {
+    margin-top: 20px;
+    font-size: 18px;
+    font-weight: bold;
+  }
+</style>
+</head>
+<body>
+
+<h1>BOOKS Table</h1>
+
+<table>
+  <tr>
+    <th>Product Code</th>
+    <th>Product Name</th>
+    <th>Price</th>
+    <th>Purchase</th>
+    <th>Quantity</th>
+  </tr>
+  <tr>
+    <td>601</td>
+    <td>Biography Of Prem Chand</td>
+    <td class="price">200</td>
+    <td><input type="checkbox" class="purchase"></td>
+    <td><input type="text" class="quantity"></td>
+  </tr>
+  <tr>
+    <td>602</td>
+    <td>Harry Potter</td>
+    <td class="price">1600</td>
+    <td><input type="checkbox" class="purchase"></td>
+    <td><input type="text" class="quantity"></td>
+  </tr>
+  <tr>
+    <td>603</td>
+    <td>Discovery Of India</td>
+    <td class="price">550</td>
+    <td><input type="checkbox" class="purchase"></td>
+    <td><input type="text" class="quantity"></td>
+  </tr>
+  <tr>
+    <td>604</td>
+    <td>Alif-Laila Story</td>
+    <td class="price">250</td>
+    <td><input type="checkbox" class="purchase"></td>
+    <td><input type="text" class="quantity"></td>
+  </tr>
+  <tr>
+    <td>605</td>
+    <td>Amitabh Bachchan</td>
+    <td class="price">500</td>
+    <td><input type="checkbox" class="purchase"></td>
+    <td><input type="text" class="quantity"></td>
+  </tr>
+</table>
+
+<div class="btn-container">
+  <button onclick="showBill()">Show My Bill</button>
+  <button onclick="resetForm()">RESET</button>
+</div>
+
+<div id="bill"></div>
+
+<script>
+function showBill() {
+  var checkboxes = document.getElementsByClassName("purchase");
+  var prices = document.getElementsByClassName("price");
+  var quantities = document.getElementsByClassName("quantity");
+
+  var total = 0;
+  var i = 0;
+
+  while (i < checkboxes.length) {
+    if (checkboxes[i].checked) {
+      var price = parseInt(prices[i].innerText);
+      var qty = parseInt(quantities[i].value);
+
+      if (isNaN(qty) || qty <= 0) {
+        alert("Please enter a valid quantity for " + prices[i].previousElementSibling.innerText);
+        return;
+      }
+
+      total = total + (price * qty);
+    }
+    i++;
+  }
+
+  document.getElementById("bill").innerText = "Total Bill: Rs. " + total;
+}
+
+function resetForm() {
+  var checkboxes = document.getElementsByClassName("purchase");
+  var quantities = document.getElementsByClassName("quantity");
+
+  var i = 0;
+  while (i < checkboxes.length) {
+    checkboxes[i].checked = false;
+    quantities[i].value = "";
+    i++;
+  }
+
+  document.getElementById("bill").innerText = "";
+}
+</script>
+
+</body>
+</html>
