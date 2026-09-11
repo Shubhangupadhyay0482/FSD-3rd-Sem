@@ -1,11 +1,11 @@
 const EventEmitter=require('events');
 const myEmitter= new EventEmitter();
-myEmitter.on('greet', (name)=>{
-    console.log('Welcome, $(name)');
+myEmitter.on('login', (name)=>{
+    console.log('$(name) Logged in successfully');
 });
-myEmitter.on('exit', (code)=>{
-    console.log('Exit event received, Code:, $(code)');
+myEmitter.on('message', (msg)=>{
+    console.log('Message event received: $(msg)');
 });
-myEmitter.emit('greet','Btech students:');
-myEmitter.emit('exit',0);
+myEmitter.emit('login','Shubh');
+myEmitter.emit('message','Welcome to node.js');
 
